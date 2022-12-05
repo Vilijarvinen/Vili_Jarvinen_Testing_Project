@@ -1,0 +1,43 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Project must be created by the user before making an issue
+Post Condition	Issue made
+Tags	Issue
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+Title = New Issue
+Description = I made a new issue
+Modified Title = New Issue 2
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+
+	Create issue
+		Naviage to issues page
+		Choose Create a new issue
+		Input Title New Issue
+		Input description I made a new issue
+		Choose Create Issue
+		Confirm new issue was created
+
+ 	Update name of issue
+		Navigate to issues page
+		Choose New Issue
+		Choose Edit title and description
+		Input Title New Issue 2
+		Choose Save Changes
+		Confirm issue title was changed

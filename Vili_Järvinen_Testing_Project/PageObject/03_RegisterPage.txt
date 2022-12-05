@@ -1,0 +1,76 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+
+Documentation	User Registration Test scenario with verification, valid and invalid credentials.
+
+Pre Condition	Fill out info required for registration
+Post Condition	Register a new user
+Tags	Register, User
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# Here Test Data defined as a Variable for easy access
+
+First name = Vili
+Last name = Järvinen
+Username = Willlzz
+Email = vili.o.jarvinen@student.laurea.fi
+Password = *************
+Invalid Email = gona
+LoginUrl = https://gitlab.com/users/sign_up
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+
+	Register user with valid username and password 
+		Input First Name    Vili
+		Input Last Name    Järvinen
+		Input Username    Willlzz
+		Input Email		vili.o.jarvinen@student.laurea.fi
+		Input Password    *************
+		Submit Register Form
+		Verify Page Should Contain Almost there... page Which Tells User To Confirm Email
+
+# Negative Test
+
+	Error message Should Be Visible After Invalid Email
+		Navigate To Register Page  LoginUrl
+		Input First Name    Vili
+		Input Last Name    Järvinen
+		Input Username    Willlzz
+		Input Email		gona
+		Input Password    *************
+		Submit Register Form
+		Verify That Error message should show Please provide a valid email address.
+
+	Error message Should Be Visible After Empty Password
+		Navigate To Register Page  LoginUrl
+		Input First Name    Vili
+		Input Last Name    Järvinen
+		Input Username    Willlzz
+		Input Email		vili.o.jarvinen@student.laurea.fi
+		Input Password    
+		Submit Register Form
+		Verify That Error message should show Minimum length is 8 characters.
+		
+	Error message Should Be Visible After Not Checking reCAPTCHA
+		Navigate To Register Page  LoginUrl
+		Input First Name    Vili
+		Input Last Name    Järvinen
+		Input Username    Willlzz
+		Input Email		vili.o.jarvinen@student.laurea.fi
+		Input Password    *************
+		Submit Register Form
+		Verify That Error message should show There was an error with the reCAPTCHA. Please solve the reCAPTCHA again.

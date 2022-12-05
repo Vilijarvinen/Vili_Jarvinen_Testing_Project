@@ -1,0 +1,72 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	 Have registered a GitLab user, Logged in on a GitLab user
+Post Condition	Have created a new project on GitLab
+Tags	Project
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+Project name = Vilinprojekti
+Project URL = https://gitlab.com/ - Willlzz
+Project slug = vilinprojekti
+Project deployment target (optional) = No deployment planned
+Visibility level = Private
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+
+	Create blank project
+		Log in on GitLab with valid credentials
+		Navigate to Projects page
+		Choose New Project
+		Choose create Blank Project
+		Input Project Name Vilinprojekti
+		Choose project URL end Willlzz
+		Choose project deployment target No deployment planned
+		Choose visibility level Private
+		Choose Create project
+		Confirm new blank project was created
+
+	Delete blank project
+		Log in on GitLab with valid credentials
+		Navigate to Projects page		
+		Choose project Vilinprojekti
+		Navigate to Settings
+		Expand selection Advanced
+		Scroll down to Delete this project
+		Choose Delete project
+		Input Willlzz/vilinprojekti
+		Choose Yes, delete project
+		Confirm prject was deleted
+
+# Negative Test
+
+	Create a blank project with the previous same name
+		Log in on GitLab with valid credentials
+		Navigate to Projects page
+		Choose New Project
+		Choose create Blank Project
+		Input Project Name Vilinprojekti
+		Choose project URL end Willlzz
+		Choose project deployment target No deployment planned
+		Choose visibility level Private
+		Choose Create project
+		Confirm Error message The form contains the following errors:
+			Project namespace name has already been taken
+			Name has already been taken
+			Path has already been taken
+
+
